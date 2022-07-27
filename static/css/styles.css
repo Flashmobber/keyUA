@@ -1,0 +1,33 @@
+body {
+    margin-top: 0;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: white;
+    filter: brightness(10%);
+}
+
+.nav-item {
+    padding: 0;
+    background-color: #6c757d;
+    border-radius: 5px !important;
+    border-bottom-color: black;
+}
+
+.nav-item:hover {
+    background-color: #6c757d;
+    filter: brightness(90%);
+}
+
+.nav-link {
+    margin: 5px;
+}
+
+.btn-link {
+    color: white !important;
+    text-decoration: none !important;
+}

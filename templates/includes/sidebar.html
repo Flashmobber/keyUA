@@ -1,0 +1,18 @@
+<div class="navbar-collapse" id="navbar">
+    <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+            <button style="margin-top: 10px; border-bottom-color: black;" type="button"
+                    class="btn btn-secondary btn-lg btn-block">
+                <a class="btn-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+            </button>
+            <li class="list-group-item list-group-item-action nav-item">
+                {% if user.first_name %}
+                    <a class="nav-link"
+                       href="{{ user.get_absolute_url }}">{{ user.first_name }} {{ user.last_name }}</a>
+                {% else %}
+                    <a class="nav-link" href="{{ user.get_absolute_url }}">{{ user.get_username }}</a>
+                {% endif %}
+            </li>
+        {% endif %}
+    </ul>
+</div>

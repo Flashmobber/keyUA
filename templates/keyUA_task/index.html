@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Test task for position Python developer</h1>
+    <p>This is a home page.</p>
+    <hr>
+    <h5>In DB we have:</h5>
+    <ul>
+        <li><strong>Entry's:</strong> <a href="{% url 'keyUA_task:entry-list'%}">{{ all_entrys }}</a></li>
+    </ul>
+    <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+{% endblock %}
