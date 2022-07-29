@@ -4,18 +4,16 @@
 {% block content %}
     <h1 style="margin-top: 10px;">
         <span>Entries list<br>
-            <a class="btn btn-primary" type="button" href="{% url 'keyUA:entry-add' %}">
+            <a class="btn btn-primary my_btn" type="button" href="{% url 'keyUA:entry-add' %}">
                 Add entry
             </a>
         </span>
-        <span class="h5">
-            <form style="margin-top: 10px; float: right;" action="" method="GET" class="form-inline">
-                {{ date_filter|crispy }}
-                <input class="btn btn-secondary form-inline" type="submit" value="🔎">
-            </form>
-        </span>
     </h1>
     <hr>
+    <form style="margin-top: 10px; float: right;" method="GET" class="form-inline">
+        {{ date_filter|crispy }}
+        <input class="btn btn-secondary form-inline" type="submit" value="🔎">
+    </form>
     {% if entry_list %}
         <table class="table table-striped table-sm">
             <thead class="thead-dark">
@@ -62,6 +60,6 @@
             {% endfor %}
         </table>
     {% else %}
-        <p>Entry's not found.</p>
+        <p>Entries not found.</p>
     {% endif %}
 {% endblock %}

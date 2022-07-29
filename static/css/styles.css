@@ -1,9 +1,21 @@
+
+
 body {
-    margin-top: 0;
+    margin-top: 100px; /* Add a top margin to avoid content overlay */
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
 }
 
 .nav-link {
     color: white;
+    margin: 15px;
+    padding: 10px;
 }
 
 .nav-link:hover {
@@ -12,17 +24,16 @@ body {
 }
 
 .nav-item {
-    padding: 0;
-    background-color: #6c757d;
+    background-color: #C8BB66;
     border-radius: 5px !important;
-    border-bottom-color: black;
 }
 
 .nav-item:hover {
-    background-color: #6c757d;
-    filter: brightness(90%);
+    background-color: #C8BB66;
+    filter: brightness(75%);
 }
 
-.nav-link {
-    margin: 5px;
+.btn-secondary {
+    background-color: #C8BB66;
+    filter: brightness(75%);
 }

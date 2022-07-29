@@ -82,8 +82,16 @@ class EntryCreateView(LoginRequiredMixin, generic.CreateView):
               ]
     success_url = reverse_lazy("keyUA_task:entry-list")
 
+    def get_context_data(self, **kwargs):
+        if self.request.user.is_superuser:
+            self.fields.append("user")
+        elif "user" in self.fields:
+            self.fields.remove("user")
+        return super().get_context_data(**kwargs)
+
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        if not self.request.user.is_superuser:
+            form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -96,10 +104,15 @@ class EntryUpdateView(LoginRequiredMixin, UserPassesTestMixin,
               "duration",
               ]
     success_url = reverse_lazy("keyUA:entry-list")
-    template_name = "keyUA_task/entry_list.html"
+
+    # template_name = "keyUA_task/entry_form.html"
 
     def test_func(self):
-        if self.request.user == self.get_object().user:
+        if self.request.user.is_superuser:
+            self.fields.append("user")
+        elif "user" in self.fields:
+            self.fields.remove("user")
+        if self.request.user == self.get_object().user or self.request.user.is_superuser:
             return True
         return False
 

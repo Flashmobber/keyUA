@@ -15,14 +15,13 @@
 </head>
 
 <body>
+<div class="top">
+    {% block sidebar %}
+        {% include "includes/sidebar.html" %}
+    {% endblock %}
+</div>
 <div class="container-fluid">
     <div class="row">
-        <div class="top" style="min-width: 200px; max-width: 200px">
-
-            {% block sidebar %}
-                {% include "includes/sidebar.html" %}
-            {% endblock %}
-        </div>
         <div class="col" style="align-self: center;">
 
             {% block content %}{% endblock %}
