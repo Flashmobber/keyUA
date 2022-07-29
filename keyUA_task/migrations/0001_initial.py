@@ -17,17 +17,39 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Entry',
+            name="Entry",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField(auto_created=True, default=datetime.datetime(2022, 7, 27, 18, 6, 31, 897783, tzinfo=utc))),
-                ('distance', models.IntegerField()),
-                ('duration', models.IntegerField()),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "date",
+                    models.DateField(
+                        auto_created=True,
+                        default=datetime.datetime(
+                            2022, 7, 27, 18, 6, 31, 897783, tzinfo=utc
+                        ),
+                    ),
+                ),
+                ("distance", models.IntegerField()),
+                ("duration", models.IntegerField()),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'entry',
-                'verbose_name_plural': "entry's",
+                "verbose_name": "entry",
+                "verbose_name_plural": "entry's",
             },
         ),
     ]

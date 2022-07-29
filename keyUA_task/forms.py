@@ -7,7 +7,10 @@ class UserCreateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ["username", "password", ]
+        fields = [
+            "username",
+            "password",
+        ]
 
     def save(self, commit=True):
         password = self.cleaned_data.pop("password")
@@ -15,3 +18,13 @@ class UserCreateForm(forms.ModelForm):
         user.set_password(password)
         user.save()
         return user
+
+
+class EntrySearchForm(forms.Form):
+    date_start = forms.DateField(required=False, label="Date:",
+                                 widget=forms.DateInput(attrs={
+                                     "placeholder": "From"}),
+                                 )
+    date_end = forms.DateField(required=False, label="",
+                               widget=forms.DateInput(attrs={
+                                   "placeholder": "To"}))

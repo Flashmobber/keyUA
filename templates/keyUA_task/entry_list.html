@@ -2,12 +2,18 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-    <h1>
-        <span style="margin: 5px">Entry's list</span>
-        <form style="float: right;" action="" method="GET" class="form-inline">
-            {{ search_brand|crispy }}
-            <input style="margin-top: 10px;" class="btn btn-secondary" type="submit" value="🔎">
-        </form>
+    <h1 style="margin-top: 10px;">
+        <span>Entries list<br>
+            <a class="btn btn-primary" type="button" href="{% url 'keyUA:entry-add' %}">
+                Add entry
+            </a>
+        </span>
+        <span class="h5">
+            <form style="margin-top: 10px; float: right;" action="" method="GET" class="form-inline">
+                {{ date_filter|crispy }}
+                <input class="btn btn-secondary form-inline" type="submit" value="🔎">
+            </form>
+        </span>
     </h1>
     <hr>
     {% if entry_list %}
@@ -17,6 +23,12 @@
                 <th>Date</th>
                 <th>Distance</th>
                 <th>Duration</th>
+                <th>Average speed</th>
+                {% if user.is_superuser %}
+                    <th>User</th>
+                {% endif %}
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             {% for entry in entry_list %}
@@ -24,16 +36,32 @@
                     <td>
                         {{ entry.date }}
                     </td>
-                    <td>
+                    <td align="center">
                         {{ entry.distance }}
                     </td>
-                    <td>
+                    <td align="center">
                         {{ entry.duration }}
+                    </td>
+                    <td align="center">
+                        {{ entry.avg_speed }}
+                    </td>
+                    {% if user.is_superuser %}
+                        <td>
+                            {{ entry.user }}
+                        </td>
+                    {% endif %}
+                    <td>
+                        <a class="btn btn-success btn-sm btn-block" type="button"
+                           href="{% url 'keyUA:entry-update' pk=entry.id %}">UPDATE</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm btn-block" type="button"
+                           href="{% url 'keyUA:entry-delete' pk=entry.id %}">DELETE</a>
                     </td>
                 </tr>
             {% endfor %}
         </table>
     {% else %}
-        <p>Brands not found.</p>
+        <p>Entry's not found.</p>
     {% endif %}
 {% endblock %}

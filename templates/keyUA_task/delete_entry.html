@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <h1>
+        Delete entry: {{ entry.date }}?
+    </h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-danger" type="submit" value="Delete">
+        <a class="btn btn-primary" type="button"
+           href="{% url 'keyUA_task:entry-list' %}">Cancel</a>
+    </form>
+{% endblock %}

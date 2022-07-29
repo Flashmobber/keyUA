@@ -1,12 +1,53 @@
 {% extends "base.html" %}
+{% load mathfilters %}
 
 {% block content %}
     <h1>Test task for position Python developer</h1>
-    <p>This is a home page.</p>
+    <p>This is a README page.</p>
     <hr>
-    <h5>In DB we have:</h5>
+    <h5>Statistics:</h5>
     <ul>
-        <li><strong>Entry's:</strong> <a href="{% url 'keyUA_task:entry-list'%}">{{ all_entrys }}</a></li>
+        <li><strong>Weeks number:</strong> {{ weeks_number }}</li>
+        <li>
+            <strong>Entry's:</strong> <a href="{% url 'keyUA_task:entry-list' %}">
+            {{ amount_entrys }}</a>
+        </li>
+        <li><strong>Total distance:</strong> {{ total_distance }}</li>
+        <li><strong>Total duration:</strong> {{ total_duration }}</li>
     </ul>
-    <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+    <a href="{% url 'keyUA_task:entry-list' %}">
+        {% if user.is_authenticated %}
+            View full entry list for user: {{ user.username }}
+        {% else %}
+            You need to be logged in to view the entry list.
+        {% endif %}
+    </a>
+    {% if week_stat %}
+        <table class="table table-striped table-sm">
+            <thead class="thead-dark">
+            <tr>
+                <th>Week start</th>
+                <th>Total distance</th>
+                <th>Total duration</th>
+                <th>Avg. speed</th>
+            </tr>
+            </thead>
+            {% for week in week_stat %}
+                <tr>
+                    <td>
+                        {{ week.week }}
+                    </td>
+                    <td align="center">
+                        {{ week.dist }}
+                    </td>
+                    <td align="center">
+                        {{ week.duration }}
+                    </td>
+                    <td align="center">
+                        {{ week.dist|div:week.duration|floatformat }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
 {% endblock %}

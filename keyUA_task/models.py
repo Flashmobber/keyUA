@@ -8,7 +8,11 @@ class Entry(models.Model):
     date = models.DateField(auto_created=True, default=now())
     distance = models.IntegerField(blank=False, null=False)
     duration = models.IntegerField(blank=False, null=False)
-    user = models.ForeignKey(User, default=settings.USE_L10N, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    @property
+    def avg_speed(self):
+        return round(self.distance / self.duration, 2)
 
     class Meta:
         verbose_name = "entry"
