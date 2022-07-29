@@ -2,10 +2,11 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-<h1>{{ object|yesno:"Update,Create"}} entry</h1>
+    <h1>{{ object|yesno:"Update,Create" }} entry</h1>
     <form action="" method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-        <input class="btn btn-primary" type="submit" value="Submit">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-success" type="submit" value="Submit">
+        <a class="btn btn-primary" type="submit" href="{% url 'keyUA_task:entry-list' %}">Cancel</a>
     </form>
 {% endblock %}
